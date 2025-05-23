@@ -100,7 +100,6 @@ Instructor Feedback and Approval:
 •	Hosting deploys place (EC2)
 
 •	MapBox for API (cheaper)
-
 •	Chat is hard
 
 •	SQL
