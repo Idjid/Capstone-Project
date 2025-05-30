@@ -115,3 +115,7 @@ Instructor Feedback and Approval:
 •	Multilanguage (website, comment sections)
 
 •	Cencorship
+
+
+
+![image](https://github.com/user-attachments/assets/857fa453-d9d0-4cb9-b398-c5f4b11d66bf)
