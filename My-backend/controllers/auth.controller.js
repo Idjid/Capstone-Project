@@ -1,7 +1,7 @@
 const User = require('../boxes/userBox');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-require('dotenv').config(); // если .env рядом с package.json
+require('dotenv').config(); 
 
 console.log('SECRET in controller:', process.env.MY_SUPER_SECRET);
 
