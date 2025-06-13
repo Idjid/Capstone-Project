@@ -1,6 +1,12 @@
 const User = require('../boxes/userBox');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+require('dotenv').config(); // если .env рядом с package.json
+
+console.log('SECRET in controller:', process.env.MY_SUPER_SECRET);
+
+
+
 
 exports.userRegister = async (req, res) => {
   try {
@@ -33,7 +39,7 @@ exports.userRegister = async (req, res) => {
 
     const token = jwt.sign(
       { id: newUser._id, role: newUser.role },
-      process.env.JWT_SECRET,
+      process.env.MY_SUPER_SECRET,
       { expiresIn: '1d' }
     );
 
@@ -71,7 +77,7 @@ exports.userLogin = async (req, res) => {
     }
 
     
-    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ id: user._id, role: user.role }, process.env.MY_SUPER_SECRET, {
       expiresIn: '1d',
     });
 
