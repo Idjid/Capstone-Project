@@ -7,7 +7,8 @@ const {
     getOneUser,
     getAllBooks,
     deleteUser,
-    deleteBook
+    deleteBook,
+    postBook
 } = require('../controllers/admin.controller');
 
 
@@ -16,5 +17,6 @@ router.get('/users/:id', auth, getOneUser);
 router.get('/books', auth, getAllBooks);
 router.delete('/users/:id', auth, deleteUser);
 router.delete('/books/:id', auth, deleteBook);
+router.post('/books', auth, postBook);
 
 module.exports = router;
