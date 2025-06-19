@@ -30,8 +30,20 @@ exports.getOneUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
     try {
-        if (req.user,role !== 'admin') return res.status(403).json({msg: 'Access denied. Not enough rights'});
-        await User.findByIdAndDelete(req.params.userId);
+        if (req.user.role !== 'admin') return res.status(403).json({msg: 'Access denied. Not enough rights'});
+        
+        const userId = req.params.id;
+        console.log('Received userId:', userId);
+        const user = await User.findById(userId);
+        console.log('Found user:', user);
+
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        await User.findByIdAndDelete(userId);
+
         res.status(200).json({msg: 'User has been deleted'});
     } catch (err) {
         res.status(500).json({msg: 'Server error. Code 500'});
@@ -52,7 +64,7 @@ exports.getAllBooks = async (req, res) => {
 exports.deleteBook = async (req, res) => {
     try {
         if (req.user,role !== 'admin') return res.status(403).json({msg: 'Access denied. Not enough rights'});
-        await Book.findByIdAndDelete(req.params.bookId);
+        await Book.findByIdAndDelete(req.params.id);
         if (!book) {
             return res.status(404).json({msg: 'Book not found'});
         };        
