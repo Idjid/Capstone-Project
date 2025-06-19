@@ -33,9 +33,7 @@ exports.deleteUser = async (req, res) => {
         if (req.user.role !== 'admin') return res.status(403).json({msg: 'Access denied. Not enough rights'});
         
         const userId = req.params.id;
-        console.log('Received userId:', userId);
         const user = await User.findById(userId);
-        console.log('Found user:', user);
 
 
         if (!user) {
@@ -63,11 +61,17 @@ exports.getAllBooks = async (req, res) => {
 
 exports.deleteBook = async (req, res) => {
     try {
-        if (req.user,role !== 'admin') return res.status(403).json({msg: 'Access denied. Not enough rights'});
-        await Book.findByIdAndDelete(req.params.id);
+        if (req.user.role !== 'admin') return res.status(403).json({msg: 'Access denied. Not enough rights'});
+
+        const bookId = req.params.id;
+        const book = await Book.findById(bookId);
+
         if (!book) {
             return res.status(404).json({msg: 'Book not found'});
-        };        
+        };       
+
+        await Book.findByIdAndDelete(req.params.id);
+
         res.status(200).json({msg: 'Book deleted'});
     } catch (err) {
         res.status(500).json({msg: 'Server error. Code 500'});

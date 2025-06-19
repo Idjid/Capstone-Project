@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-console.log('SECRET in auth.js:', process.env.MY_SUPER_SECRET);
 
 
 
