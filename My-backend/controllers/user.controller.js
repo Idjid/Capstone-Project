@@ -17,26 +17,15 @@ exports.getProfile = async (req, res) => {
 
 exports.getAllUsers = async (req, res) => {
   try {
+    let users;
+
     if (req.user.role !== 'admin') {
-      return res.status(403).json({ msg: 'Access denied. Not enough rights'});
+      users = await User.find().select('-password');
+    } else {
+      users = await User.find().select('name email role');
     }
 
-    const users = await User.find().select('-password');
     res.status(200).json(users);
-  } catch (err) {
-    res.status(500).json({ msg: 'Server error. Code 500' });
-  }
-};
-
-
-exports.deleteUser = async (req, res) => {
-  try {
-    if (req.user.role !== 'admin') {
-      return res.status(403).json({ msg: 'Access denied. Not enough rights' });
-    }
-
-    await User.findByIdAndDelete(req.params.id);
-    res.status(200).json({ msg: 'User has been deleted' });
   } catch (err) {
     res.status(500).json({ msg: 'Server error. Code 500' });
   }
@@ -49,5 +38,18 @@ exports.deleteAccount = async (req, res) => {
   } catch (err) {
     res.status(500).json({ msg: 'Server error. Code 500' });
     console.log(req.user);
+  }
+};
+
+exports.deleteUser = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ msg: 'Access denied. Not enough rights' });
+    }
+
+    await User.findByIdAndDelete(req.params.id);
+    res.status(200).json({ msg: 'User has been deleted' });
+  } catch (err) {
+    res.status(500).json({ msg: 'Server error. Code 500' });
   }
 };
