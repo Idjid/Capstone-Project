@@ -12,16 +12,19 @@ exports.getAllUsers = async (req, res) => {
 
 exports.getOneUser = async (req, res) => {
     try {
-        if (req.user,role !== 'admin') return res.status(403).json({msg: 'Access denied. Not enough rights'});
-        const userId = req.params.id;
-        const user = await User.findById(userId).select('-password');
+        const userId = req.params.id; 
+
+        const user = await User.findById(userId);
+
         if (!user) {
-            return res.status(404).json({msg: 'User not found'});
-        };
-        res.status(200).json(users);
-    } catch (err) {
-        res.status(500).json({msg: 'Server error. Code 500'});
-    }
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.json(user);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error 500' });
+  }
 };
 
 exports.deleteUser = async (req, res) => {
@@ -43,6 +46,7 @@ exports.getAllBooks = async (req, res) => {
         res.status(500).json({msg: 'Server error. Code 500'});
     }
 };
+
 
 exports.deleteBook = async (req, res) => {
     try {

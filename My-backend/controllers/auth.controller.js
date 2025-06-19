@@ -1,9 +1,9 @@
+require('dotenv').config();
+
 const User = require('../boxes/userBox');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-require('dotenv').config(); 
 
-console.log('SECRET in controller:', process.env.MY_SUPER_SECRET);
 
 
 
@@ -87,3 +87,9 @@ exports.userLogin = async (req, res) => {
     res.status(500).json({ msg: 'Server error' });
   };
 };
+
+
+
+
+//MY_SUPER_SECRET=my_super_secret_key_123
+//MONGO_URI=mongodb://localhost:27017/mydatabase

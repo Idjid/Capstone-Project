@@ -10,12 +10,11 @@ const {
     deleteBook
 } = require('../controllers/admin.controller');
 
-//Admin Endpoints
+
 router.get('/users', auth, getAllUsers);
-router.get('/user/:userId', auth, getOneUser);
+router.get('/users/:id', auth, getOneUser);
 router.get('/books', auth, getAllBooks);
-router.get('/users', auth, adminController.getAllUsers);
-router.delete('/users/:userId', auth, deleteUser);
-router.delete('/books/bookId', auth, deleteBook);
+router.delete('/users/:id', auth, deleteUser);
+router.delete('/books/:id', auth, deleteBook);
 
 module.exports = router;
