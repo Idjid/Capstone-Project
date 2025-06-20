@@ -10,6 +10,6 @@ const {
 //Favorite Endpoints
 router.post('/', auth, addFavorite);
 router.get('/', auth, getFavorite);
-router.delete('/', auth, deleteFavorite);
+router.delete('/:bookId', auth, deleteFavorite);
 
 module.exports = router;
