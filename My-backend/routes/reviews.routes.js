@@ -3,11 +3,13 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const {
     createReview,
-    getReview
+    getReview,
+    deleteReview
 } = require('../controllers/reviews.controller');
 
 //Review Endpoints
-router.post('/reviews', auth, createReview);
+router.post('/', auth, createReview);
 router.get('/:id', auth, getReview);
+router.delete('/:id', auth, deleteReview);
 
 module.exports = router;

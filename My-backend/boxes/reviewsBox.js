@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
+const {Schema} = mongoose;
 
 const reviewSchema = new mongoose.Schema({
-  books: { type: mongoose.Schema.Types.ObjectId, ref: 'Books', required: true },
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  rating: { type: Number, min: 1, max: 5, required: true },
-  comment: { type: String },
+  bookId: {type: Schema.Types.ObjectId, required: true, ref: 'Book'},
+  userId: { type: Schema.Types.ObjectId, required: true, ref: 'User'},
+  userName: { type: String, required: true },
+  comment: {type: String, required: true},
+  rating: { type: Number, required: true, min: 1, max: 5 },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Review', reviewSchema);
