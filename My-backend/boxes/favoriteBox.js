@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-const favoriteSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  books: { type: mongoose.Schema.Types.ObjectId, ref: 'Books', required: true }
+const userBooksSchema = new Schema({
+  userId: { type: Schema.Types.ObjectId, required: true, ref: 'User'},
+  bookIds: [{type: Schema.Types.ObjectId, ref: 'Book'}]
 }, { timestamps: true });
 
-module.exports = mongoose.model('Favorite', favoriteSchema);
+module.exports = mongoose.model('UserBooks', userBooksSchema);

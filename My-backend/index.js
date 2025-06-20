@@ -17,7 +17,7 @@ app.use(express.json());
 app.use('/api/admin', require('./routes/admin.routes'));
 app.use('/api/user', require('./routes/user.routes'));
 app.use('/api/auth', require('./routes/auth.routes'));
-app.use('/api/favorite', require('./routes/favorite.routes'));
+app.use('/api/favorites', require('./routes/favorite.routes'));
 app.use('/api/reviews', require('./routes/reviews.routes'));
 
 

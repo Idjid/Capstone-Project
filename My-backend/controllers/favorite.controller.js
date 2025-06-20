@@ -5,28 +5,41 @@ exports.addFavorite = async (req, res) => {
   try {
     const { bookId } = req.body;
 
-    const exists = await Favorite.findOne({ student: req.user.id, books: bookId });
-    if (exists) return res.status(400).json({ msg: 'Already in your favorite list' });
+    let favorite = await Favorite.findOne({ userId: req.user.id});
 
-    const favorite = new Favorite({
-      student: req.user.id,
-      books: bookId
-    });
-    
+    if (favorite) {
+      if (favorite.bookIds.includes(bookId)) {
+        return res.status(400).json({msg: 'It is already in your list'});
+      }
+      
+      favorite.bookIds.push(bookId);
+      await favorite.save();
+      return res.status(200).json(favorite);
+    } else {
+      const newFavorite = new Favorite ({
+        userId: req.user.id,
+        bookIds: [bookId]
+      });
 
-    const saved = await favorite.save();
-    console.log('Saved favorite:', saved);
-    res.status(201).json(saved);
+      const saved = await newFavorite.save();
+      return res.status(201).json(saved);
+    }
   } catch (err) {
-    res.status(500).json({ msg: 'Server error. Error code 500' });
+    console.error('Error from adding favorire:', err);
+    res.status(500).json({msg: 'Server error. Code 500'});
   }
 };
 
 
 exports.getFavorite = async (req, res) => {
   try {
-    const favorites = await Favorite.find({ student: req.user.id }).populate('books');
-    res.status(200).json(favorites);
+    const favorite = await Favorite.find({ userId: req.user.id }).populate('bookIds');
+    
+    if (!favorite) {
+      return res.status(200).json({ bookIds: [] });
+    }
+
+    res.status(200).json(favorite);
   } catch (err) {
     res.status(500).json({ msg: 'Server error. Error code 500' });
   }
@@ -35,9 +48,24 @@ exports.getFavorite = async (req, res) => {
 
 exports.deleteFavorite = async (req, res) => {
   try {
-    await Favorite.findOneAndDelete({ student: req.user.id, books: req.params.bookId });
+    const bookId = req.params.bookId;
+
+    const favorite = await Favorite.findOne({ userId: req.user.id });
+    
+    if (!favorite) {
+      return res.status(404).json({msg: 'Favorite list not found'});
+    }    
+
+    if (!favorite.bookIds.map(id => id.toString()).includes(bookId)) {
+      return res.status(400).json({ msg: 'Book is not in favorites'});
+    }
+
+    favorite.bookIds = favorite.bookIds.filter(id => id.toString() !== bookId);
+    await favorite.save();
+
     res.status(200).json({ msg: 'Removed from favorites' });
   } catch (err) {
+    console.error('Deleted favorite error:', err);
     res.status(500).json({ msg: 'Server error. Error code 500' });
   }
 };
