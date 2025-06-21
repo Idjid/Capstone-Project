@@ -152,13 +152,15 @@ POST /api/auth/login - Logs in as a user
 
 Admin Endpoints:
 
-POST /api/admin/users - Bans/blocks a user
-
 GET /api/admin/users - Admin views all users
 
-GET /api/admin/books - Admin views all listings
+GET /api/admin/users/:id - Admin check just one user
 
-DELETE /api/admin/users/user-id- Admin deletes user
+GET /api/admin/books - Admin views all books from library
+
+GET /api/admin/books/:id - Admin check a book from library (+)
+
+DELETE /api/admin/users/:id - Admin deletes user
 
 DELETE /api/admin/listings/user-id - Admin deletes listing
 
@@ -166,31 +168,33 @@ DELETE /api/admin/listings/user-id - Admin deletes listing
 
 User EndPoints:
 
-GET /api/users/user-id - User gets his profile
+GET /api/user/me - User gets his profile
 
-POST /api/chat/chat-id – User creates chat with other user
+POST /api/chat/chat-id – User creates chat with other user (+)
 
-GET /api/chat/chat-id – User opens chat
+GET /api/chat/chat-id – User opens chat (+)
+
+DELETE /api/user/me - User deletes his profile
 
 
 Favorite EndPoints:
 
-POST /api/users/user-id/user-books - User saves his favorite books  
+POST /api/favorites/"bookId": "id" - User saves book to his favorite list
 
-GET /api/users/user-id/user-books - Get users favorite books
+GET  /api/favorites - User gets his list with saved books
 
-DELETE /api/users/user-id/user-books – Deletes saved books
+DELETE /api/favorites/:bookId – Deletes saved book
 
 
 Review EndPoints: 
 
 POST /api/reviews - User makes a review
 
-GET /api/reviews/review-id - View the review
+GET /api/reviews/:bookId - User checks reviews to book
 
-PUT /api/reviews/review-id – User edits a review
+PUT /api/reviews/ – User edits a review (+)
 
-DELETE /api/reviews/review-id – User deletes a review
+DELETE /api/reviews/:reviewId – User deletes a review
 
 -----------------------------------------------------------
 CRUD operations
@@ -209,9 +213,9 @@ Delete: Can delete account himself or admin will do
 
 Review collection:
 
-Create: Students leaves reviews on books and other users
+Create: Students leaves reviews on books
 
-Read: Listing displays their review
+Read: Users can read reviews on books
 
 Update: User edits his review
 
@@ -220,10 +224,10 @@ Delete: User or admin could delete review
 
 Favorite collection:
 
-Create: User saves a book for the list
+Create: User saves a book in his favorite list
 
-Read: User views his saved list
+Read: User views saved books in the list
 
-Update: Change status of the book in his list (reading, finished, planning to read)
+Update: Change status of the book in his list (reading, finished, planning to read) (+)
 
-Delete: User deletes a book from his list of favorites
+Delete: User deletes a book from his list 
