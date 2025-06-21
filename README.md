@@ -120,7 +120,6 @@ Instructor Feedback and Approval:
 
 
 
-![image](https://github.com/user-attachments/assets/857fa453-d9d0-4cb9-b398-c5f4b11d66bf)
 Milestone 2:
 
 Architecture(0.2v):
@@ -132,9 +131,10 @@ Architecture(0.2v):
 Design inspiration: https://dribbble.com/shots/19202835-Digital-Book-Library-Dashboard
 
 -----------------------------------------------------------
-Database schema(0.2v):
+Database schema(0.3v):
 
-![image](https://github.com/user-attachments/assets/c8a7b442-a8e7-49be-9e58-f859e60ee66d)
+![image](https://github.com/user-attachments/assets/a3306cbb-75de-42f3-ac17-f5c790e9c24b)
+
 
 -----------------------------------------------------
 
