@@ -95,32 +95,6 @@ As a User, I want to chat with users so that we can discuss where can we meet.
 
 
 
-Instructor Feedback and Approval:
-
-•	Be carefull with Next.js (don’t have MAC)
-
-•	Be carefull with Next.js (if don’t have MAC)
-•	Hosting deploys place (EC2)
-
-•	MapBox for API (cheaper)
-•	Chat is hard
-
-•	SQL
-
-•	GUESTs if don’t want to login
-
-•	Login without Google
-
-•	Community section
-
-•	Add somebody in the chat (multi-user chat)
-
-•	Multilanguage (website, comment sections)
-
-•	Cencorship
-
-
-
 Milestone 2:
 
 Architecture(0.3v):
@@ -233,3 +207,21 @@ Read: User views saved books in the list
 Update: Change status of the book in his list (reading, finished, planning to read) (+)
 
 Delete: User deletes a book from his list 
+
+
+--------------------------------
+Needs to be done:
+
+•	Hosting deploys place (EC2)
+
+•	MapBox for API (cheaper) (+)
+
+•	Chat (+)
+
+•	GUESTs if don’t want to login (+)
+
+•	Community section (+)
+
+•	Add somebody in the chat (multi-user chat) (+)
+
+•	Cencorship (+)
