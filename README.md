@@ -27,7 +27,7 @@ Front-end:
 
 Main language: JavaScript/TypeScript
 
-Framework: React.js, Next.js
+Framework: React.js
 
 Style: Tailwind Css (styling), Frame Motion (for animation) (optional)
 
@@ -40,11 +40,12 @@ Framework: Express.js
 
 Authenticator: JWT (JSON Web Token), Password.js or NextAuth (for Google Auth.)
 
-DataBase: Prisma ORM (comfortable with TypeScript), PostgreSQL (support full text search)
+DataBase: MongoDB
 
 Cloud: Amazon S3
 
-Hosting: EC2/Firebase
+Hosting: Amazon EC2/Firebase
+
 API: Google Books API or Open Library (от Internet Archive), Maps JavaScirpt API	
 
 
