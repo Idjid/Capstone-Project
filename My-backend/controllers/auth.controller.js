@@ -56,7 +56,7 @@ exports.userRegister = async (req, res) => {
 
   } catch (err) {
     console.error(err.message);
-    res.status(500).json({ msg: 'Server error' });
+    res.status(500).json({ msg: 'Server error. Code 500' });
   };
 };
 
@@ -68,13 +68,13 @@ exports.userLogin = async (req, res) => {
    
     const user = await User.findOne({ email });
     if (!user) {
-        return res.status(400).json({ msg: 'Invalid credentials' });
+        return res.status(400).json({ msg: `This user doesn't exist` });
     };
 
     
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-        return res.status(400).json({ msg: 'Invalid credentials' });
+        return res.status(400).json({ msg: 'Wrong password' });
     }
 
     
@@ -85,7 +85,7 @@ exports.userLogin = async (req, res) => {
     res.status(200).json({ token });
   } catch (err) {
     console.error('Login error:', err);
-    res.status(500).json({ msg: 'Server error' });
+    res.status(500).json({ msg: 'Server error. Code 500' });
   };
 };
 

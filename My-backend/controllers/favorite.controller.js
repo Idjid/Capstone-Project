@@ -9,7 +9,7 @@ exports.addFavorite = async (req, res) => {
 
     if (favorite) {
       if (favorite.bookIds.includes(bookId)) {
-        return res.status(400).json({msg: 'It is already in your list'});
+        return res.status(400).json({msg: 'The book is already in your list'});
       }
       
       favorite.bookIds.push(bookId);
@@ -25,7 +25,7 @@ exports.addFavorite = async (req, res) => {
       return res.status(201).json(saved);
     }
   } catch (err) {
-    console.error('Error from adding favorire:', err);
+    console.error('Add to favorite error:', err);
     res.status(500).json({msg: 'Server error. Code 500'});
   }
 };
@@ -57,7 +57,7 @@ exports.deleteFavorite = async (req, res) => {
     }    
 
     if (!favorite.bookIds.map(id => id.toString()).includes(bookId)) {
-      return res.status(400).json({ msg: 'Book is not in favorites'});
+      return res.status(400).json({ msg: 'Book is not in the favorite list'});
     }
 
     favorite.bookIds = favorite.bookIds.filter(id => id.toString() !== bookId);

@@ -24,7 +24,7 @@ exports.getOneUser = async (req, res) => {
         res.json(user);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Server error 500' });
+        res.status(500).json({ message: 'Server error. Code 500' });
   }
 };
 
@@ -119,6 +119,6 @@ exports.postBook = async (req, res) => {
 
     }  catch (err) {
         console.error(err.message);
-        res.status(500).json({ msg: 'Server error' });
+        res.status(500).json({ msg: 'Server error. Code 500' });
     };
 };
