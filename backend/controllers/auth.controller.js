@@ -17,7 +17,7 @@ exports.userRegister = async (req, res) => {
       return res.status(400).json({ msg: 'This user already exists' });
     };
 
-    if (!name || !email || !password || !role) {
+    if (!name || !email || !password) {
       return res.status(400).json({ msg: 'Please fill in all fields' });
     };
 

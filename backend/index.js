@@ -22,3 +22,6 @@ app.use('/api/reviews', require('./routes/reviews.routes'));
 app.listen(PORT, () => {
     console.log(`The server is: http://localhost:${PORT}`);
 });
+
+//For future 
+// app.use(cors({ origin: 'http://localhost:3000' }));

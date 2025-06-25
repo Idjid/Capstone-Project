@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function BookList() {
+function MainBoard() {
     const [books, setBooks] = useState([]);
     const [error, setError] = useState('');
 
@@ -34,6 +34,7 @@ function BookList() {
 
     return (
         <div>
+            <h1> Welcome to the MainPage</h1>
             <h2>Book list (Admin):</h2>
             <ul>
                 {books.map((book, index) => (
@@ -44,4 +45,6 @@ function BookList() {
     );
 }
 
-export default BookList;
+
+
+export default MainBoard
