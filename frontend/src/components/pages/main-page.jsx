@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/main-page.css'
+import axios from 'axios';
 
 function MainBoard() {
     const [books, setBooks] = useState([]);
@@ -13,22 +14,22 @@ function MainBoard() {
             return;
         }
 
-        fetch('http://localhost:8080/api/admin/books', {
-            method: 'GET',
+        axios.get('http://localhost:8080/api/admin/books', {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
         })
-            .then(async res => {
-                if (!res.ok) {
-                    const errorData = await res.json();
-                    throw new Error(errorData.msg || 'Access denied');
-                }
-                return res.json()
+            .then( res => {
+                setBooks(res.data);
             })
-            .then(data => setBooks(data))
-            .catch(err => setError(err.message));
+            .catch(err => {
+                if (err.response && err.response.data && err.response.data.msg) {
+                    setError(err.response.data.msg);
+                } else {
+                    setError(err.message || 'Error')
+                }
+            });
     }, []);
 
     if (error) return <div style={{ color: 'red' }}>Error: {error}</div>;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './reg.css';
+import '../../styles/reg.css';
+import axios from 'axios';
 
 function Register() {
     //userBox
@@ -23,24 +24,18 @@ function Register() {
         event.preventDefault();
         
         try {
-            const res = await fetch('http://localhost:8080/api/auth/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json'},
-                body: JSON.stringify(forms),
-            });
-
-            const data = await res.json();
-
-            if(!res.ok) {
-                throw new Error(data.msg || "Failed registration");
-            }
+            const res = await axios.post('http://localhost:8080/api/auth/register', forms);
+            //saving token (console.log)
+            localStorage.setItem('token', res.data.token);
+            
 
             console.log('Registration:', forms);
-            alert(`Registration completed! Welcome to ym website, ${forms.name}!`);
+            alert(`Registration completed! Welcome to my website, ${forms.name}!`);
             setForms({ name: '', email: '', password: ''});
         } catch (err) {
-            console.log("Registration error:", err.message);
-            alert(`Error: ${err.message}`);
+            const msg = err.response?.data?.msg || err.message || 'Unknown error';
+            console.log("Registration error:", msg);
+            alert(`Error: ${msg}`);
         }
 
         

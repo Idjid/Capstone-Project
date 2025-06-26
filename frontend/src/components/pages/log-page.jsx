@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Login() {
   //My logging part
@@ -26,23 +27,20 @@ function Login() {
 
 
     try {
-      const res = await fetch('http://localhost:8080/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify({ email, password })
+      const res = await axios.post('http://localhost:8080/api/auth/login', {
+        email,
+        password
       });
       
-      const data = await res.json();
+      const data = await res.data;
 
-      if (res.ok) {
-        localStorage.setItem('token', data.token);
-        alert('Login worked!');
-        navigate('/frontend/src/components/pages/main.js')
-      } else {
-        setError(data.msg || "Login error");
-      }
+      localStorage.setItem('token', data.token);
+      alert('Login worked!');
+      navigate('/main');
     } catch (err) {
-      setError("Server is not available. Sorry")
+      if(err.response && err.response.data && err.response.data.msg) {
+        setError("Server is not available. Sorry");
+      }      
     } finally {
       setLoading(false);
     }

@@ -7,7 +7,7 @@ function Sidebar() {
   return (
     <aside className="sidebar">
       <nav className="nav-links">
-        <NavLink to="/" className="nav-item">
+        <NavLink to="/main" className="nav-item">
           <FaHome className="icon" />
           <span className="nav-text"> Home</span>
         </NavLink>
