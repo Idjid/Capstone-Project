@@ -9,7 +9,6 @@ const bookSchema = new mongoose.Schema({
   bookType: { type: String, enum: ['hardcover', 'paperback']},
   author: { type: String, required: true },
   coordinates: { lat: { type: Number }, lng: { type: Number } },
-  images: [{ type: String }], 
   }, { timestamps: true });
 
 module.exports = mongoose.model('Book', bookSchema);

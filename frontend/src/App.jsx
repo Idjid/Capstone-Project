@@ -9,12 +9,12 @@ function App() {
   return (
     <Router>
       <nav>
-          <Link to="/">Login</Link> | 
+          <Link to="/login">Login</Link> | 
           <Link to="/main">Main</Link> | 
           <Link to="/register">Register</Link>
       </nav>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/main" element={<Layout><MainBoard /></Layout>} />
         <Route path="/register" element={<Register />} />
       </Routes>

@@ -1,13 +1,22 @@
 import React from 'react';
 import '../../styles/sidebar.css';
 import { FaHome, FaChartBar, FaCog, FaUsers, FaHeart, FaSignOutAlt, } from 'react-icons/fa';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate  } from 'react-router-dom';
 
 function Sidebar() {
+  const navigate = useNavigate();
+
+  const logoutHandling = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+  };
+
+
+
   return (
     <aside className="sidebar">
       <nav className="nav-links">
-        <NavLink to="/main" className="nav-item">
+        <NavLink to="/profile/me" className="nav-item">
           <FaHome className="icon" />
           <span className="nav-text"> Home</span>
         </NavLink>
@@ -32,10 +41,10 @@ function Sidebar() {
           <span className="nav-text"> Settings</span>
         </NavLink>
 
-        <NavLink to="/logout" className="nav-item logout-link">
+        <div className='nav-item logout-link' onClick={logoutHandling} style={{ cursor: 'pointer'}}>
           <FaSignOutAlt className="icon" />
           <span className="nav-text"> Logout</span>
-        </NavLink>
+        </div>
       </nav>
     </aside>
   );
