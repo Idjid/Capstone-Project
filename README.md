@@ -209,6 +209,84 @@ Update: Change status of the book in his list (reading, finished, planning to re
 Delete: User deletes a book from his list 
 
 
+
+
+--------------------------------------
+
+Milestone 4:
+
+Page plans:
+
+1) Main page:
+
+•	Reasearch label
+
+•	List of recomendations (random books)
+
+•	Logout button
+
+•	Link to users profile
+
+•	Link to list of users
+
+
+2) Book Page:
+
+•	Cover (use webj to optimize file size)
+
+•	Book's title
+
+•	Rate 
+
+•	Book's comment section button (React Route)
+
+• Author's name
+
+•	Published date
+
+•	Find button (Link to the Map Page)
+
+
+3) Profile page (/me):
+
+•	Users title
+
+•	Collection of favorite books
+
+•	Chat button (if it is another user)
+
+•	Comment history (React router)
+
+•	Books that user is sharing right now
+
+
+4) Map Page:
+
+•	Maps itself
+
+•	Search list with (Which book), (Where it is (location zone))
+
+•	Small square with book and user who has it (Link to User page)
+
+
+5) Chat
+
+• List of already existing chats (if user had it before)
+
+•	GIF animation support
+
+•	Stickers support
+
+
+6) Created books page:
+
+•	Books name, title, photo (optional)
+
+•	User who owns this book (link to his profile)
+
+•	Books quality
+
+
 --------------------------------
 Needs to be done:
 
