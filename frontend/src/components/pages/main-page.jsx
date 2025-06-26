@@ -27,7 +27,7 @@ function MainBoard() {
             <div className='search-bar'>
                 <input type='text' placeholder='Enter book title...' value={search} onChange={(event) => setSearch(event.target.value)} onKeyDown={(e) => e.key === 'Enter' && searchHandling()} />
                 <button onClick={searchHandling}>Search</button>
-                
+
                 {error && <p className="error-message">{error}</p>}
             </div>
 
@@ -48,7 +48,5 @@ function MainBoard() {
 
     );
 }
-
-
 
 export default MainBoard
