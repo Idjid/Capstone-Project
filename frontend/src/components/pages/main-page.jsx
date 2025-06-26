@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import '../../styles/main-page.css'
 
 function MainBoard() {
     const [books, setBooks] = useState([]);
@@ -33,15 +34,16 @@ function MainBoard() {
     if (error) return <div style={{ color: 'red' }}>Error: {error}</div>;
 
     return (
-        <div>
-            <h1> Welcome to the MainPage</h1>
-            <h2>Book list (Admin):</h2>
-            <ul>
-                {books.map((book, index) => (
-                    <li key={index}>{book.title} - {book.author}</li>
-                ))}
-            </ul>
-        </div>
+            <div className='main-text'>
+                <h1>Welcome to the MainPage</h1>
+                <h2>Book list (Admin):</h2>
+                <ul>
+                    {books.map((book, index) => (
+                        <li key={index}>{book.title} - {book.author}</li>
+                    ))}
+                </ul>
+            </div>
+        
     );
 }
 
