@@ -232,7 +232,7 @@ Page plans:
 
 2) Book Page:
 
-•	Cover (use webj to optimize file size)
+•	Cover (use webj to optimize file size) (can be zoomed)
 
 •	Book's title
 
