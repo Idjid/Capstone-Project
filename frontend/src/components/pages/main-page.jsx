@@ -1,50 +1,51 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../../styles/main-page.css'
 import axios from 'axios';
 
 function MainBoard() {
+    const [search, setSearch] = useState('');
     const [books, setBooks] = useState([]);
     const [error, setError] = useState('');
 
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-
-        if (!token) {
-            setError('Token not found. GIVE ME MY TOKEN!');
-            return;
+    //sends requests to the server for list of books
+    const searchHandling = async () => {
+        try {
+            const res = await axios.get(`http://localhost:8080/api/books?search=${encodeURIComponent(search)}`);
+            setBooks(res.data);
+            setError('');
+        } catch (error) {
+            console.error('Error while downloading books:', error);
+            setError('Error while downloading books. Please, try later');
         }
+    };
 
-        axios.get('http://localhost:8080/api/admin/books', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-        })
-            .then( res => {
-                setBooks(res.data);
-            })
-            .catch(err => {
-                if (err.response && err.response.data && err.response.data.msg) {
-                    setError(err.response.data.msg);
-                } else {
-                    setError(err.message || 'Error')
-                }
-            });
-    }, []);
-
-    if (error) return <div style={{ color: 'red' }}>Error: {error}</div>;
-
+    
     return (
-            <div className='main-text'>
-                <h1>Welcome to the MainPage</h1>
-                <h2>Book list (Admin):</h2>
-                <ul>
-                    {books.map((book, index) => (
-                        <li key={index}>{book.title} - {book.author}</li>
-                    ))}
-                </ul>
-            </div>
         
+        <div className='book-finder-container'>
+            <h1>Book finder 3000</h1>
+            <div className='search-bar'>
+                <input type='text' placeholder='Enter book title...' value={search} onChange={(event) => setSearch(event.target.value)} onKeyDown={(e) => e.key === 'Enter' && searchHandling()} />
+                <button onClick={searchHandling}>Search</button>
+                
+                {error && <p className="error-message">{error}</p>}
+            </div>
+
+            
+            <div className="book-list"> 
+                {books.map((book, idx) => (
+                    <div key={idx} className="book-card"> 
+                        {book.cover ? (
+                            <img src={book.cover} alt={book.title} />
+                        ) : (
+                            <div className="no-cover">No cover</div>
+                        )}
+                        <p>{book.title}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+
     );
 }
 
