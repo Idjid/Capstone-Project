@@ -26,10 +26,11 @@ function Sidebar() {
           <span className="nav-text"> Dashboard</span>
         </NavLink>
 
-        <NavLink to="/users" className="nav-item">
+        <NavLink to="/admin/users" className="nav-item">
           <FaUsers className="icon" />
           <span className="nav-text"> Users</span>
         </NavLink>
+
 
         <NavLink to="/favorites" className="nav-item">
           <FaHeart className="icon" />
@@ -51,3 +52,5 @@ function Sidebar() {
 }
 
 export default Sidebar;
+
+
