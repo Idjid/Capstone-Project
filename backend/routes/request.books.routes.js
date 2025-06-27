@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../middleware/auth');
+
 const {
-    mainPageRequest
+    mainPageRequest,
+    getRecommendations 
 } = require('../controllers/request.books.controller');
 
-//Request Endpoints
+
 router.get('/', mainPageRequest);
+router.get('/recommendations', getRecommendations);
 
 module.exports = router;

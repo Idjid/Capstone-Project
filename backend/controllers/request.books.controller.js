@@ -23,3 +23,26 @@ exports.mainPageRequest = async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch...' });
     }
 };
+
+
+exports.getRecommendations = async (req, res) => {
+    try {
+        const subjects = ['fantasy', 'science_fiction', 'romance', 'history', 'mystery'];
+        const randomSubject = subjects[Math.floor(Math.random() * subjects.length)];
+
+        const response = await axios.get(`https://openlibrary.org/subjects/${randomSubject}.json?limit=5`);
+        const works = response.data.works;
+
+        const recommendations = works.map((work) => ({
+            title: work.title,
+            cover: work.cover_id
+                ? `https://covers.openlibrary.org/b/id/${work.cover_id}-M.jpg`
+                : null
+        }));
+
+        res.json(recommendations);
+    } catch (error) {
+        console.error('Error fetching recommendations:', error.message);
+        res.status(500).json({ error: 'Failed to fetch recommendations' });
+    }
+};

@@ -49,3 +49,16 @@
   margin-top: 10px;
   font-weight: bold;
 }
+
+.recommendation-list {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.recommendation-list .book-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 150px;
+}
