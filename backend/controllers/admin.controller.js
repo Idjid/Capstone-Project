@@ -49,7 +49,6 @@ exports.deleteUser = async (req, res) => {
 
 exports.getAllBooks = async (req, res) => {
     try {
-        if (req.user.role !== 'admin') return res.status(403).json({msg: 'Access denied. Not enough rights'});
         const books = await Book.find();
         res.status(200).json(books);
     } catch (err) {
@@ -79,45 +78,51 @@ exports.deleteBook = async (req, res) => {
 
 exports.postBook = async (req, res) => {
     try {
-        if (req.user.role !== 'admin') return res.status(403).json({msg: 'Access denied. Not enough rights'});
-
-        const {title, description, price, bookQuality, bookType, author} = req.body;        
-
-        if (!title || !description || !price || !bookQuality || !bookType || !author) {
-            return res.status(400).json({ msg: 'Please fill in all fields' });
-        };
-
-        const exBook = await Book.findOne({ title });
+        console.log('User from req.user:', req.user);
+        console.log('Incoming request body:', req.body);
+        console.log('Incoming request:', req.body); 
         
-        if (exBook) {
-            return res.status(400).json({ msg: 'This book already exists' });
-        };
-        
-
-        const newBook =  new Book ({
+        const {
+            key,
             title,
             description,
             price,
             bookQuality,
             bookType,
-            author
-        }); 
+            author,
+            location
+        } = req.body;
+
+        if (!key || !title || !price || !bookQuality || !bookType || !author) {
+            return res.status(400).json({ msg: 'Please fill in all required fields' });
+        }
+
+        const existing = await Book.findOne({ key });
+        if (existing) {
+            return res.status(400).json({ msg: 'This book already exists in database' });
+        }
+        const coverUrl = `https://covers.openlibrary.org/b/olid/${key.replace("/works/", "")}-M.jpg`;
+
+        const newBook = new Book({
+            key,
+            title,
+            description,
+            price,
+            bookQuality,
+            bookType,
+            author,
+            location,
+            owner: req.user.id
+        });
 
         await newBook.save();
 
         res.status(201).json({
-            book: {
-                title: newBook.title,
-                description: newBook.description,
-                price: newBook.price,
-                bookQuality: newBook.bookQuality,
-                bookType: newBook.bookType,
-                author: newBook.author
-            }
+            msg: 'Book successfully saved',
+            book: newBook
         });
-
-    }  catch (err) {
+    } catch (err) {
         console.error(err.message);
         res.status(500).json({ msg: 'Server error. Code 500' });
-    };
+    }
 };

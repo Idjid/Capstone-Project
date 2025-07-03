@@ -8,6 +8,7 @@ import UserList from './components/pages/user-list.jsx';
 import BookPage from './components/pages/dynamic-book.jsx';
 import Profile from './components/pages/profile.jsx';
 import UserProfile from './components/pages/userProfile.jsx';
+import AddBookForm from './components/pages/addBookForm.jsx';
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
           <Link to="/profile/me">Profile</Link> |
           <Link to="/main">Main</Link> | 
           <Link to="/admin/users">Users</Link> |
-          <Link to="/books/works/:id">Book</Link>
+          <Link to="/books/works/:id">Book</Link> |
+          <Link to="/api/books">Add Book</Link> 
       </nav>
       <Routes>
         <Route path="/login" element={<Login />} />
@@ -28,6 +30,8 @@ function App() {
         <Route path="/admin/users" element={<Layout><UserList /></Layout>} />
         <Route path="/books/works/:id" element={<Layout><BookPage /></Layout>} />
         <Route path="/profile/:id" element={<Layout><UserProfile /></Layout>} />
+        <Route path="/api/books" element={<Layout><AddBookForm /></Layout>} />
+
         
       </Routes>
       

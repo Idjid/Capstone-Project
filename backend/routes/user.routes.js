@@ -10,7 +10,8 @@ const {
     updateDescription,
     updateAddress,
     updatePicture,
-    getUserById
+    getUserById,
+    getAllBooks
 } = require('../controllers/user.controller');
 
 //User Endpoints
@@ -22,6 +23,7 @@ router.post('/name', auth, updateName)
 router.post('/description', auth, updateDescription),
 router.post('/address', auth, updateAddress)
 router.post('/picture', auth, updatePicture)
+router.get('/books', auth, getAllBooks);
 router.get('/:id', auth, getUserById);
 
 

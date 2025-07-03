@@ -1,4 +1,17 @@
 const User = require('../boxes/userBox');
+const Book = require('../boxes/bookBox');
+
+
+exports.getAllBooks = async (req, res) => {
+  try {
+    const books = await Book.find().sort({ createdAt: -1 });
+    res.status(200).json(books);
+  } catch (err) {
+    console.error('Error in getAllBooks:', err);
+    res.status(500).json({ msg: 'Server error. Code 500' });
+  }
+};
+
 
 
 exports.getProfile = async (req, res) => {

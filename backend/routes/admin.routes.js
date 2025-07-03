@@ -12,9 +12,9 @@ const {
 } = require('../controllers/admin.controller');
 
 
-router.get('/users', auth, getAllUsers);
+router.get('/users', getAllUsers);
 router.get('/users/:id', auth, getOneUser);
-router.get('/books', auth, getAllBooks);
+router.get('/books', getAllBooks);
 router.delete('/users/:id', auth, deleteUser);
 router.delete('/books/:id', auth, deleteBook);
 router.post('/books', auth, postBook);

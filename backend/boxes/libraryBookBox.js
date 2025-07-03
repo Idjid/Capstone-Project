@@ -9,4 +9,4 @@ const libBookSchema = new mongoose.Schema({
   cover_i: { type: Number },
 }, { collection: 'locallibrary' });
 
-module.exports = mongoose.model('LibBook', libBookSchema);
+module.exports = mongoose.model('LibBook', libBookSchema);  

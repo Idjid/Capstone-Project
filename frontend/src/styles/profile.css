@@ -175,3 +175,13 @@ textarea {
 .margin-button {
     margin-bottom: 0;
 }
+
+.book-card.small {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.book-card.small:hover {
+  transform: scale(3);
+  z-index: 10;
+}

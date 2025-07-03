@@ -17,9 +17,44 @@ function Profile() {
   const [addressInput, setAddressInput] = useState({ country: "", state: "", city: "" });
   const [pictureInput, setPictureInput] = useState("");
 
+  const [myBooks, setMyBooks] = useState([]);
+
+
   const navigate = useNavigate();
 
   useEffect(() => {
+    const fetchProfileAndBooks = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      //Getting profile with tokens
+      const profileRes = await axios.get("http://localhost:8080/api/user/me", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      const userData = profileRes.data;
+      setUser(userData);
+      setNameInput(userData.name || "");
+      setDescriptionInput(userData.description || "");
+      setAddressInput(userData.address || { country: "", state: "", city: "" });
+      setPictureInput(userData.picture || "");
+
+      //Getting books with tokens
+      const booksRes = await axios.get("http://localhost:8080/api/user/books", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      //Filtering by userData._id
+      const ownBooks = booksRes.data.filter(book => book.owner?.toString() === userData._id?.toString());
+      setMyBooks(ownBooks);
+
+    } catch (err) {
+      console.error("Error while downloading profile or books:", err);
+    }
+  };
+
+  fetchProfileAndBooks();
+
     const fetchProfile = async () => {
       try {
         const res = await axios.get("http://localhost:8080/api/user/me", {
@@ -216,11 +251,26 @@ function Profile() {
         <div className="profile-tab-content">
             {activeTab === "exchange" ? (
             <div className="exchange-books">
-                <p>There is nothing (Sharing books)</p>
-                <button onClick={() => navigate("/publish")} className="publish-book-button">
-                    Add book
-                </button>
-            </div>
+                    {myBooks.length === 0 ? (
+                        <p>You haven't added any books yet.</p>
+                    ) : (
+                        <div className="book-list">
+                            {myBooks.map((book) => (
+                                <div key={book._id} className="book-card small">
+                                    <h4>{book.title}</h4>
+                                    <p><strong>Author:</strong> {book.author}</p>
+                                    <p><strong>Price:</strong> ${book.price}</p>
+                                    <p><strong>Type:</strong> {book.bookType}</p>
+                                    <p><strong>Condition:</strong> {book.bookQuality}</p>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    <button onClick={() => navigate("/api/books")} className="publish-book-button">
+                        Add book
+                    </button>
+                </div>
             ) : (
             <div className="comment-history">
                 <p>No comments</p>
