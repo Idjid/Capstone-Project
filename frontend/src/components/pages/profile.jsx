@@ -174,7 +174,7 @@ function Profile() {
                         <input
                             placeholder="Country"
                             value={addressInput.country}
-                            nChange={(event) => setAddressInput({ ...addressInput, country: event.target.value })}
+                            onChange={(event) => setAddressInput({ ...addressInput, country: event.target.value })}
                         />
                         <input
                             placeholder="State"
@@ -200,10 +200,6 @@ function Profile() {
                         <button className="btn secondary" onClick={() => setEditingAddress(true)}>Change address</button>
                     </>
                 )}
-
-                <button className="chat-button" onClick={() => navigate("/chat")}>
-                    Chat
-                </button>
         </div>
 
 

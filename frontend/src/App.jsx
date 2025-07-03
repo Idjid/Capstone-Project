@@ -7,6 +7,7 @@ import Layout from './components/layout/layout.jsx';
 import UserList from './components/pages/user-list.jsx';
 import BookPage from './components/pages/dynamic-book.jsx';
 import Profile from './components/pages/profile.jsx';
+import UserProfile from './components/pages/userProfile.jsx';
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
         <Route path="/main" element={<Layout><MainBoard /></Layout>} />
         <Route path="/admin/users" element={<Layout><UserList /></Layout>} />
         <Route path="/books/works/:id" element={<Layout><BookPage /></Layout>} />
+        <Route path="/profile/:id" element={<Layout><UserProfile /></Layout>} />
+        
       </Routes>
       
     </Router>

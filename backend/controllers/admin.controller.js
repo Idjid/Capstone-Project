@@ -3,7 +3,6 @@ const Book = require('../boxes/bookBox')
 
 exports.getAllUsers = async (req, res) => {
     try {
-        if (req.user.role !== 'admin') return res.status(403).json({msg: 'Access denied. Not enough rights'});
         const users = await User.find().select('-password');
         res.status(200).json(users);
     } catch (err) {
