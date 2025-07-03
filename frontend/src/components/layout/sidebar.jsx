@@ -18,7 +18,7 @@ function Sidebar() {
       <nav className="nav-links">
         <NavLink to="/profile/me" className="nav-item">
           <FaHome className="icon" />
-          <span className="nav-text"> Home</span>
+          <span className="nav-text"> Profile</span>
         </NavLink>
 
         <NavLink to="/main" className="nav-item">

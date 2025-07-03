@@ -1,0 +1,177 @@
+.profile-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: sans-serif;
+  background: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header h1 {
+  margin-bottom: 10px;
+}
+
+.profile-role {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.profile-description {
+  max-width: 600px;        
+  max-height: 120px;     
+  overflow-y: auto;       
+  white-space: normal;    
+  overflow-wrap: break-word; 
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 0;
+}
+
+
+.chat-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.chat-button:hover {
+  background-color: #0056b3;
+}
+
+.profile-tabs {
+  margin-top: 30px;
+  display: flex;
+  gap: 10px;
+}
+
+.profile-tabs button {
+  padding: 10px 20px;
+  background: #ddd;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+
+.profile-tabs .active {
+  background: #007bff;
+  color: white;
+}
+
+.profile-tab-content {
+  margin-top: 20px;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  min-height: 150px;
+}
+
+.profile-loading {
+  text-align: center;
+  padding: 30px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 60px;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.address-form input {
+  display: block;
+  width: 100%;
+  padding: 6px;
+  margin: 4px 0;
+}
+
+.publish-book-button {
+  margin-top: 10px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.publish-book-button:hover {
+  background-color: #45a049;
+}
+
+.btn {
+  padding: 8px 14px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn.primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn.primary:hover {
+  background-color: #0056b3;
+}
+
+.btn.secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn.secondary:hover {
+  background-color: #545b62;
+}
+
+.edit-buttons {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.name-input {
+  padding: 8px;
+  font-size: 18px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 10px;
+}
+
+.edit-name-section {
+  margin-bottom: 10px;
+}
+
+.profile-picture-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+
+.edit-picture-form input {
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 10px;
+}
+
+.margin-button {
+    margin-bottom: 0;
+}
