@@ -51,3 +51,25 @@ exports.deleteReview = async (req, res) => {
     res.status(500).json({ msg: 'Server error. Error code 500' });
   }
 };
+
+
+exports.averageRating = async (req, res) => {
+  try {
+    const bookId = req.params.id;
+
+    const reviews = await Review.find({ bookId });
+
+    if (reviews.length === 0) {
+      return res.status(200).json({ averageRating: 0 });
+    }
+
+    const totalRating = reviews.reduce((sum, review) => sum + (review.rating || 0), 0);
+
+    const averageRating = totalRating / reviews.length;
+
+    res.status(200).json({ averageRating });
+  } catch (err) {
+    console.error('Error getting average rating:', err);
+    res.status(500).json({ msg: 'Server error. Error code 500' });
+  }
+};

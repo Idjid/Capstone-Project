@@ -4,12 +4,15 @@ const auth = require('../middleware/auth');
 const {
     createReview,
     getReview,
-    deleteReview
+    deleteReview,
+    averageRating
 } = require('../controllers/reviews.controller');
 
 //Review Endpoints
 router.post('/', auth, createReview);
-router.get('/:id', auth, getReview);
+router.get('/:id/reviews', getReview);
+router.get('/:id/average-rating', averageRating);
 router.delete('/:id', auth, deleteReview);
+
 
 module.exports = router;
