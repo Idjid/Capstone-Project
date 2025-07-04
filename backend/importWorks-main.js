@@ -85,7 +85,7 @@ async function runMultithreadImport() {
 
     if (start >= end) {
       //finished Thread
-      console.log(`✔️ [Thread ${i + 1}] already finished (processed ${progress[i]} boxes)`);
+      console.log(` [Thread ${i + 1}] already finished (processed ${progress[i]} boxes)`);
       completed++;
       if (completed === THREADS) {
         clearInterval(saveInterval);
